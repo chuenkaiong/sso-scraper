@@ -3,9 +3,9 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-from lib import filemgr
-from lib import settings
-from lib.items import LegisItem
+from scraper_lib import filemgr
+from scraper_lib import settings
+from scraper_lib.items import LegisItem
 
 
 def scrape_main(retrieve="ALL", sl=False, date=datetime.date.today().strftime("%Y%m%d"), saveTo="./data"):
