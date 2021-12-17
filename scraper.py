@@ -55,7 +55,8 @@ def scrape_all(sl, saveTo):
             item = LegisItem(link, shorthand)
             legis_items.append(item)
 
-    for item in legis_items:
+    # for item in legis_items:
+    for item in legis_items[:10]:
         scrape_one(item, sl, saveTo)
 
 

@@ -59,10 +59,9 @@ def stitch_parts(parts):
 
 
 def write_to_file(saveTo, item):
-    with open(f"{saveTo}/{item.shorthand}.html", "w") as f:
+    with open(f"{saveTo}/{item.shorthand}.html", "w", encoding="utf-8") as f:
         # prints subsid link at the top of .html file
         if item.sl_urls:
             f.write(f"Subsidiary Legislation Link: {item.sl_urls}")
-        # handles unicode encode error
-        f.write(item.html.encode(
-            'ascii', errors='ignore').decode('unicode-escape'))
+
+        f.write(item.html)

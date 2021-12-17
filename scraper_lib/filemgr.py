@@ -12,6 +12,7 @@ def check_save_location(path):
         user_input = input("(y/n): ")
       if user_input == "y":
         return True
+      return False
     return True
 
   else:
