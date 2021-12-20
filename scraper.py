@@ -48,15 +48,14 @@ def scrape_all(sl, saveTo):
 
         soup = BeautifulSoup(r.text, "lxml")
         browse_list = soup.find("table", class_="browse-list").find("tbody")
-        rows = browse_list.find_all("tr")[:10]
+        rows = browse_list.find_all("tr")
         for row in rows:
             link = f"https://sso.agc.gov.sg{row.find('a')['href']}"
             shorthand = link.split("/")[-1]
             item = LegisItem(link, shorthand)
             legis_items.append(item)
 
-    # for item in legis_items:
-    for item in legis_items[:10]:
+    for item in legis_items:
         scrape_one(item, sl, saveTo)
 
 
