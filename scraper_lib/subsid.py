@@ -11,6 +11,8 @@ def get_subsid(main_item, saveTo):
     # generate list of SL items 
     subsid_url = f"https://sso.agc.gov.sg/Act/{main_item.shorthand}?DocType=Act&ViewType=Sl&PageIndex=0&PageSize=500"
     r = requests.get(subsid_url, headers=settings.headers)
+    if r.status_code != requests.status_codes.codes.ok:
+        print('URL not found: ' + subsid_url)
     soup = BeautifulSoup(r.text, "lxml")
     
     # (assume only one page of SL for now)
@@ -29,6 +31,8 @@ def get_subsid(main_item, saveTo):
 def sl_scrape_one(sl_item, saveTo):
     print("Retrieving SL", sl_item.shorthand)
     r = requests.get(sl_item.url, headers=settings.headers)
+    if r.status_code != requests.status_codes.codes.ok:
+        print(f"SL not found: {sl_item.shorthand}")
     soup = BeautifulSoup(r.text, "lxml")
     openWd = soup.find("td", class_="openWd")
     non_lazy = "".join([str(x) for x in openWd.contents]) if openWd else ""

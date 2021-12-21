@@ -48,6 +48,9 @@ def scrape_all(sl, saveTo):
 
         soup = BeautifulSoup(r.text, "lxml")
         browse_list = soup.find("table", class_="browse-list").find("tbody")
+        if not browse_list:
+            print("Failed to find table of contents.")
+            return
         rows = browse_list.find_all("tr")
         for row in rows:
             link = f"https://sso.agc.gov.sg{row.find('a')['href']}"
