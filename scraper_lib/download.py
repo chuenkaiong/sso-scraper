@@ -20,7 +20,6 @@ def get_body(response):
     lazyload_data = json.loads(soup.find_all(
         "div", {"class": "global-vars"}, limit=2)[1]["data-json"])
     # print(json.dumps(lazyload_data, sort_keys=True, indent=4))
-    print(lazyload_data)
     if "tocSysId" not in lazyload_data or "fragments" not in lazyload_data:
         print("Unable to find lazyload data.")
         return ""
